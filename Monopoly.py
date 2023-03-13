@@ -9,19 +9,24 @@ CHANCE = [0, 24, 11, 12 or 28, 5 or 15 or 25 or 35, None, 'gof', 'mvbkwds', 'gtj
 CHEST = [0, None, None, None, 'gof', 'gtj', None, None, None, None, None, None, None, None, None, None, None] # Represents speces the player must move to according to cards in the community chest deck 
 
 def chance():
+    'Picks a card from chance deck'
     return choice(CHANCE)
 def chest():
+    'Picks a card from community chest deck'
     return choice(CHEST)
 
 def generateProperties():
+    'Creates a dictionary associating property names in order with ascending integers'
     properties = ['Go', 'Mediterranean Ave', 'Community Chest', 'Baltic Ave', 'Income Tax', 'Reading Railroad', 'Oriental Ave', 'Chance', 'Vermont Ave', 'Connecticut Ave', 'Jail', 'St. Charles Pl', 'Electric Co', 'States Ave', 'Virginia Ave', 'Pennsylvania Railroad', 'St. James Pl', 'Community Chest', 'Tennessee Ave', 'New York Ave', 'Free Parking', 'Kentucky Ave', 'Chance', 'Indiana Ave', 'Illinois Ave', 'B&O Railroad', 'Atlantic Ave', 'Ventnor Ave', 'Water Works', 'Marvin Gardens', 'Go to Jail', 'Pacific Ave', 'North Carolina Ave', 'Community Chest', 'Pennsylvania Ave', 'Short Line', 'Chance', 'Park Place', 'Luxury Tax', 'Boardwalk']
     return dict(zip(range(len(properties)), properties))
 
 def rollDice():
+    'Returns two random numbers between 1 and 6 inclusive'
     sides = (1, 2, 3, 4, 5, 6)
     return choice(sides), choice(sides)
 
 def monopoly(dice_throws, freq):
+    'Simulates a game piece moving for dice_throw many dice throws and updates the progress every freq seconds. Statistics are printed to stdout.'
     properties = generateProperties()
     propertiesFreq = {}
     injail = False
@@ -125,6 +130,7 @@ def monopoly(dice_throws, freq):
 
 
 def monopolyw(dice_throws, freq, outfile):
+    'Simulates a game piece moving for dice_throw many dice throws and updates the progress every freq seconds. Statistics are saved in outfile.'
     out = open(outfile, 'w')
     properties = generateProperties()
     propertiesFreq = {}
